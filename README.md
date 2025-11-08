@@ -31,12 +31,22 @@ lib/
 │   ├── constants/     # App-wide constants
 │   └── theme/         # App theme and styling
 ├── data/
-│   ├── models/        # Data models
+│   ├── models/        # Data models (BookModel, UserModel, etc.)
+│   ├── repositories/  # Repository implementations
 │   └── services/      # Firebase services
+├── domain/
+│   └── repositories/  # Repository interfaces
 └── presentation/
-    ├── providers/     # State management (Provider)
-    ├── screens/       # UI screens
-    └── widgets/       # Reusable widgets
+    ├── providers/     # State management (Provider pattern)
+    ├── screens/       # UI screens organized by feature
+    │   ├── auth/      # Authentication screens
+    │   ├── books/     # Book management screens
+    │   ├── chats/     # Chat functionality
+    │   ├── home/      # Main navigation
+    │   ├── notifications/ # Notification management
+    │   ├── settings/  # App settings
+    │   └── users/     # User management
+    └── widgets/       # Reusable UI components
 ```
 
 ## Firebase Database Schema
@@ -514,187 +524,11 @@ flutter build ios --debug
 - Image upload and display
 - Responsive UI across different screen sizes
 
-## Demo Video
 
-**📹 Demo Video Link**: [BookSwap App Demo](https://drive.google.com/file/d/1gaG6EPIMdJ5TnJ5FFMLTK61RIrxhFM0O/view?usp=sharing)
-
-### Video Content Checklist (7-12 minutes)
-
-**Authentication Flow (2 minutes):**
-- User signup with email/password
-- Email verification process
-- Login with verified account
-- Show Firebase Authentication console
-
-**CRUD Operations (3 minutes):**
-- Create: Add new book with image upload
-- Read: Browse books feed
-- Update: Edit existing book listing
-- Delete: Remove book from listings
-- Show Firestore console updates in real-time
-
-**Swap Functionality (2 minutes):**
-- Initiate swap request
-- Show status change to "Pending"
-- Accept/reject swap from recipient side
-- Demonstrate real-time updates in Firebase console
-
-**Chat System (2 minutes):**
-- Start chat after swap initiation
-- Send messages between users
-- Show real-time message sync
-- Display Firestore messages collection
-
-**Navigation & Settings (1 minute):**
-- Navigate through all 4 main screens
-- Update profile settings
-- Toggle notification preferences
-
-**Technical Requirements:**
-- Screen recording of mobile device (not browser)
-- Clear narration explaining each feature
-- Firebase console visible alongside app demonstration
-- Show real-time data synchronization
-
-## Assignment Requirements Checklist
-
-- **Authentication**: Firebase Auth with email verification
-- **CRUD Operations**: Full book management with Firestore
-- **Swap Functionality**: Complete swap system with real-time updates
-- **State Management**: Provider pattern implementation
-- **Navigation**: 4-screen bottom navigation
-- **Settings**: Profile management and preferences
-- **Chat System**: Real-time messaging (Bonus feature)
-- **Clean Architecture**: Proper folder structure and separation
-- **Firebase Integration**: Authentication, Firestore, Storage
-- **Real-time Sync**: Instant updates across all features
-
-## Advanced Features & Bonus Implementation
-
-### Core Bonus Features
-- **Real-time Chat System**: Complete messaging with Firestore streams
-- **Email Verification Enforcement**: Users cannot access app until verified
-- **Image Upload System**: Firebase Storage integration for book covers
-- **Profile Picture Management**: User avatar upload and display
-- **Push Notifications**: Local notification system for swap updates
-
-### Technical Excellence
-- **Clean Architecture**: Separation of data, domain, and presentation layers
-- **Provider State Management**: Reactive UI updates across all screens
-- **Real-time Synchronization**: Instant updates via Firestore streams
-- **Error Handling**: Comprehensive error states and user feedback
-- **Responsive Design**: Material Design 3 with dark theme support
-
-### Development Tools
-- **Admin Tools**: Demo data management and cleanup
-- **Firebase Functions**: Backend logic for notifications
-- **Multi-platform Support**: Android, iOS, Web, macOS, Windows, Linux
-- **Asset Management**: Pre-loaded sample images for testing
-- **Code Quality**: Zero analyzer warnings, proper documentation
-
-## Assignment Deliverables
-
-### Required Submissions for Full Marks
-
-#### 1. Reflection PDF (Firebase Integration Experience)
-**Status**: ⚠️ Required  
-**Content Requirements**:
-- Minimum 2 Firebase error screenshots with detailed resolution steps
-- Authentication setup challenges and solutions
-- Firestore security rules implementation issues
-- Real-time synchronization debugging process
-- Email verification configuration problems
-- **File**: `firebase_integration_reflection.pdf`
-
-#### 2. Dart Analyzer Screenshot
-**Status**: ✅ Ready  
-**Requirements**: Screenshot showing "No issues found!" output
-- Zero warnings from `flutter analyze` command
-- Clean code quality verification
-- **Command**: `flutter analyze > analyzer_output.txt && screenshot`
-
-#### 3. GitHub Repository
-**Status**: ✅ Complete  
-**Requirements**:
-- ✅ 20+ incremental commits with clear messages
-- ✅ Professional README with architecture diagram
-- ✅ Sensitive files protected by .gitignore
-- ✅ Clean project structure with proper separation
-- **Repository**: https://github.com/Chol1000/individual_assignment_2
-
-#### 4. Design Summary PDF (1-2 pages)
-**Status**: ⚠️ Required  
-**Content Requirements**:
-- **Database Schema/ERD**: Firestore collections structure
-- **Swap State Management**: State transitions and Provider pattern
-- **Architecture Trade-offs**: Clean architecture vs complexity
-- **State Management Justification**: Why Provider over BLoC/Riverpod
-- **File**: `design_summary_bookswap.pdf`
-
-#### 5. Demo Video (7-12 minutes)
-**Status**: ✅ Recorded  
-**Requirements**:
-- All 7 required flows demonstrated
-- Firebase console evidence for every action
-- Step-by-step implementation explanations
-- **Link**: [BookSwap Demo Video](https://drive.google.com/file/d/1gaG6EPIMdJ5TnJ5FFMLTK61RIrxhFM0O/view?usp=sharing)
-
-### Grading Rubric Achievement
-
-| Criterion | Points | Status | Evidence |
-|-----------|--------|--------|-----------|
-| **State Management & Architecture** | 4/4 | ✅ Excellent | Provider pattern, Repository architecture, Clean separation |
-| **Code Quality & Repository** | 2/2 | ✅ Excellent | 20+ commits, Zero warnings, Professional README |
-| **Authentication** | 4/4 | ✅ Excellent | Firebase Auth, Email verification enforced |
-| **CRUD Operations** | 5/5 | ✅ Excellent | Complete book management with real-time sync |
-| **Swap Functionality** | 3/3 | ✅ Excellent | End-to-end swap system with Provider state |
-| **Navigation & Settings** | 2/2 | ✅ Excellent | 4-screen navigation, Settings with toggles |
-| **Chat Feature (Bonus)** | 5/5 | ✅ Excellent | Real-time messaging with Firestore |
-| **Demo Video** | 7/7 | ⚠️ Pending | Need implementation explanations |
-| **Deliverables Quality** | 3/3 | ⚠️ Pending | Need PDF documents |
-
-**Current Score**: 30/35 pts  
-**Target Score**: 35/35 pts (Excellent across all criteria)
-
-### Outstanding Deliverables
-
-1. **Create Reflection PDF** with Firebase error screenshots
-2. **Take Analyzer Screenshot** showing zero warnings
-3. **Write Design Summary PDF** covering architecture decisions
-4. **Re-record Demo Video** with technical explanations (optional for full marks)
-
-### Submission Checklist
-
-- [ ] `firebase_integration_reflection.pdf` - Firebase challenges and solutions
-- [ ] `dart_analyzer_screenshot.png` - Zero warnings evidence
-- [ ] `design_summary_bookswap.pdf` - Architecture and state management analysis
-- [x] GitHub repository with clean structure and README
-- [x] Demo video with app functionality demonstration
-
-**Deadline Compliance**: All deliverables ready for submission
 
 ---
-
-## Academic Information
 
 **Developer**: Chol Naroh  
 **Course**: Mobile App Development  
 **Assignment**: Individual Assignment 2  
-**Institution**: [University Name]  
-**Submission Date**: November 2024  
-**GitHub Repository**: https://github.com/Chol1000/individual_assignment_2  
-**Demo Video**: [BookSwap App Demonstration](https://drive.google.com/file/d/1gaG6EPIMdJ5TnJ5FFMLTK61RIrxhFM0O/view?usp=sharing)
-
-## Assignment Compliance Statement
-
-This BookSwap application fully meets all Individual Assignment 2 requirements:
-
-✅ **Technical Requirements**: Firebase Auth, Firestore CRUD, Real-time sync, Provider state management  
-✅ **Architecture Requirements**: Clean architecture, Repository pattern, Proper separation of concerns  
-✅ **Code Quality**: Zero analyzer warnings, 20+ incremental commits, Professional documentation  
-✅ **Bonus Features**: Real-time chat system, Email verification enforcement, Image upload system  
-✅ **Deliverables**: Complete documentation, demo video, reflection materials
-
-The implementation demonstrates professional-level Flutter development with industry best practices, comprehensive Firebase integration, and scalable architecture suitable for production deployment.
-
-**Expected Final Score**: 35/35 pts
+**GitHub Repository**: https://github.com/Chol1000/individual_assignment_2
