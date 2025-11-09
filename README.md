@@ -22,9 +22,28 @@ BookSwap is a full-stack mobile application that enables students to list, brows
   <img src="screenshots/settingsprofileinfo.png" width="200" alt="Settings"/>
 </div>
 
-## Architecture Diagram
+## Demo Video
 
-### Clean Architecture Pattern
+🎥 **[Watch Full Demo Video](https://drive.google.com/file/d/11QjqqPDBejNTiaDyRQpOQ2r1XcQ2XF_h/view?usp=sharing)**
+
+The demo video (7-12 minutes) showcases the complete BookSwap functionality including:
+- Authentication flow with email verification
+- CRUD operations for book management
+- Real-time swap system with state updates
+- Live chat functionality
+- Firebase console integration demonstrating real-time synchronization
+
+## System Architecture
+
+<div align="center">
+  <img src="screenshots/Architecture_Diagram.png" width="800" alt="BookSwap Clean Architecture Diagram"/>
+</div>
+
+The BookSwap application follows **Clean Architecture** principles with clear separation of concerns across four distinct layers. The **Presentation Layer** contains UI screens for authentication, book management, chats, and settings, along with reusable widgets and state providers that implement the Provider pattern for reactive state management. The **Domain Layer** serves as an abstraction with repository interfaces that define contracts for data operations. The **Data Layer** houses Firebase services, repository implementations, and data models that handle business logic and data transformation. Finally, the **Firebase Backend** provides authentication, real-time database storage, and file storage capabilities. This architecture ensures maintainable, testable code with real-time synchronization across all users through Firestore streams and Provider pattern state management.
+
+### Project Structure
+
+The application follows Clean Architecture folder organization:
 ```
 lib/
 ├── core/
@@ -49,11 +68,20 @@ lib/
     └── widgets/       # Reusable UI components
 ```
 
-## Firebase Database Schema
+### Architecture Features
 
-### Firestore Collections Structure
+- **Clean Architecture**: Clear separation between presentation, domain, and data layers
+- **Provider Pattern**: Reactive state management with real-time UI updates
+- **Repository Pattern**: Abstraction layer between business logic and data sources
+- **Firebase Integration**: Real-time synchronization across all users
+- **CRUD Operations**: Complete Create, Read, Update, Delete functionality
+- **Real-time Chat**: Live messaging with Firestore subcollections
+- **Atomic Transactions**: Consistent data updates using Firestore transactions
+- **Email Verification**: Secure authentication with enforced email verification
 
-The application uses Firebase Firestore as the primary database with the following collections:
+## Database Schema
+
+The application uses Firebase Firestore with the following collections:
 
 #### Users Collection
 Stores user profile information and preferences.
@@ -171,50 +199,37 @@ System notifications for swap updates and messages.
 
 **Notification Types**: `swap_request`, `swap_accepted`, `swap_rejected`, `message`
 
-## Features Implemented
+## Key Features
 
-### Authentication (Firebase Auth)
-- Email/password signup and login
-- **Email verification enforcement** - Users cannot access app until verified
+### Authentication
+- Email/password signup and login with Firebase Auth
+- Email verification enforcement
 - User profile management with profile pictures
 - Secure logout functionality
 
-### Book Management (CRUD Operations)
+### Book Management (CRUD)
 - **Create**: Add books with title, author, condition, and cover image
-- **Read**: Browse all available books in a beautiful feed
+- **Read**: Browse all available books in real-time
 - **Update**: Edit your own book listings
 - **Delete**: Remove books from your listings
 - Image upload to Firebase Storage
-- Real-time synchronization across all users
 
 ### Swap System
-- Request book swaps with other users (book-for-book exchange)
+- Book-for-book exchange requests
 - Real-time swap status updates (Pending, Accepted, Rejected)
 - Automatic book availability management
 - Comprehensive swap history tracking
-- Notifications for swap status changes
 
-### Chat System (Bonus Feature)
+### Chat System
 - Real-time messaging between users
 - Chat creation after swap requests
 - Message history persistence in Firestore
-- Modern chat UI with timestamps and profile pictures
+- Modern chat UI with timestamps
 
 ### Navigation & UI
-- Bottom navigation with 4 screens:
-  - **Browse Listings**: View all available books
-  - **My Books**: Manage listings, offers, and received requests
-  - **Chats**: Real-time messaging
-  - **Settings**: Profile and app preferences
+- Bottom navigation with 4 screens: Browse, My Books, Chats, Settings
 - Material Design 3 UI with dark theme
 - Responsive and intuitive interface
-
-### Settings
-- Notification preferences toggle
-- Email updates toggle
-- Profile information display with editable profile pictures
-- Email verification status indicator
-- Admin tools for demo data management
 
 ## State Management
 
@@ -539,63 +554,7 @@ flutter build apk --release
 flutter build ios --debug
 ```
 
-### Assignment Requirements Compliance
 
-**✅ Authentication:**
-- Firebase Auth with email/password signup and login
-- Email verification enforcement (users cannot access app until verified)
-- User profile creation and display
-- Secure logout functionality
-
-**✅ Book Listings (CRUD):**
-- **Create**: Post books with title, author, condition, cover image
-- **Read**: Browse all listings in shared feed
-- **Update**: Edit own book listings
-- **Delete**: Remove own book listings
-- Real-time Firestore synchronization
-
-**✅ Swap Functionality:**
-- Tap "Swap" button to initiate offers
-- Listings move to "My Offers" section
-- State changes to Pending/Accepted/Rejected
-- Real-time updates for both sender and recipient
-- Firebase Firestore sync with instant UI updates
-
-**✅ State Management:**
-- Provider pattern implementation
-- Instant state updates across all screens
-- Real-time sync for listings and swaps
-- No global setState calls outside trivial widget rebuilds
-
-**✅ Navigation:**
-- BottomNavigationBar with 4 screens:
-  - Browse Listings
-  - My Books (includes My Listings and My Offers)
-  - Chats
-  - Settings
-
-**✅ Settings:**
-- Notification preferences toggle
-- Profile information display
-- Email updates toggle
-- Profile picture management
-
-**✅ Chat System (Bonus):**
-- Real-time messaging between users
-- Messages stored in Firestore
-- Chat initiation after swap offers
-- Live message synchronization
-
-### Testing Checklist
-- Authentication flow (signup, login, email verification)
-- CRUD operations for books (create, read, update, delete)
-- Swap functionality (request, accept, reject)
-- Real-time chat system
-- Navigation between all screens
-- Settings and profile management
-- Firebase console data synchronization
-- Image upload and display
-- Responsive UI across different screen sizes
 
 
 
